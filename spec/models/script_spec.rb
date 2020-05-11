@@ -56,7 +56,7 @@ RSpec.describe Script, type: :model do
       end
     end
 
-    context 'when a script given isbn do not exist' do
+    context 'when a script with given isbn do not exist' do
       let(:isbn) { '1111-1111' }
 
       it 'returns a nil' do
@@ -64,7 +64,20 @@ RSpec.describe Script, type: :model do
       end
     end
   end
+
   describe '#by_authors_email' do
+    subject { Script.new.by_authors_email(email) }
+
+    let(:book) { create(:book, authors_emails: 'first@gmail.com, second@gmail.com') }
+    before { book }
+
+    context 'when a book with given author email exists' do
+      let(:email) { 'first@gmail.com' }
+
+      it 'returns a book record' do
+        expect(subject).to eq([book])
+      end
+    end
   end
   describe '#all_sorted_by_title' do
   end
