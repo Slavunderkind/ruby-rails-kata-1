@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scripts</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>ISBN</th>
+    <th>Authors Emails</th>
+    <th>Description</th>
+    <th>Published At</th>
+  </tr>
+
+  <% @scripts.each do |script| %>
+    <tr>
+      <td><%= script.id %></td>
+      <td><%= script.title %></td>
+      <td><%= script.isbn %></td>
+      <td><%= script.authors_emails %></td>
+      <td><%= script.try(:description) %></td>
+      <td><%= script.try(:published_at) %></td>
+    </tr>
+  <% end %>
+</table>
