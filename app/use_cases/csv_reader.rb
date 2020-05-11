@@ -4,20 +4,29 @@ require 'csv'
 
 # Read and save data from CSV file into DB
 class CsvReader
-  APP_PATH = File.dirname(File.dirname(File.expand_path(__FILE__))).freeze
+  DATA_PATH = File.join(Rails.root,'data')
   SEPARATOR = "\;"
 
-  def read_authors
-    filename = "#{APP_PATH}/data/authors.csv"
+  def execute(data_name)
+    filename = "#{DATA_PATH}/#{data_name}.csv"
 
     CSV.read(filename, col_sep: SEPARATOR).each_with_index do |row, index|
       next if index.zero?
 
-      Author.create!(
-        email: row[0],
-        first_name: row[1],
-        last_name: row[2]
-      )
+      self.send(data_name, row)
     end
+  end
+
+  private
+
+  def authors(row)
+    Author.create!(
+      email: row[0],
+      first_name: row[1],
+      last_name: row[2]
+    )
+  end
+
+  def books(row)
   end
 end
