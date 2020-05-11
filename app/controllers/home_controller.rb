@@ -9,13 +9,23 @@ class HomeController < ApplicationController
   def search_by_isbn
     @script = @script_obj.by_isbn(params[:isbn])
 
-    render :show
+    if @script
+      render :show
+    else
+      flash[:notice] = 'No matching!'
+      redirect_to root_path
+    end
   end
 
   def search_by_authors_email
     @scripts = @script_obj.by_authors_email(params[:authors_email])
 
-    render :scripts
+    if @scripts.any?
+      render :scripts
+    else
+      flash[:notice] = 'No matching!'
+      redirect_to root_path
+    end
   end
 
   def sort
