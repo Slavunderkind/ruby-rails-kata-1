@@ -3,7 +3,7 @@
 <h1>Scripts</h1>
 <table>
   <tr>
-    <th>ID</th>
+    <th>Type</th>
     <th>Title</th>
     <th>ISBN</th>
     <th>Authors Emails</th>
@@ -13,7 +13,7 @@
 
   <% @scripts.each do |script| %>
     <tr>
-      <td><%= script.id %></td>
+      <td><%= script.class.to_s %></td>
       <td><%= script.title %></td>
       <td><%= script.isbn %></td>
       <td><%= script.authors_emails %></td>
