@@ -4,7 +4,9 @@ class Script
   KINDS = %w[book magazine].freeze
 
   def all
-    (Book.all + Magazine.all).flatten
+    KINDS.each_with_object([]) do |kind, result|
+      result << kind.classify.constantize.all
+    end.flatten
   end
 
   def by_isbn(isbn)
