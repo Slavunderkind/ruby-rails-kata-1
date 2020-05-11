@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   get '/search_by_isbn' => 'home#search_by_isbn'
   get '/search_by_authors_email' => 'home#search_by_authors_email'
+  get '/sort' => 'home#sort'
 end

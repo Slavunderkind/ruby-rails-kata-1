@@ -18,6 +18,12 @@ class HomeController < ApplicationController
     render :scripts
   end
 
+  def sort
+    @scripts = @script.all_sorted_by_title
+
+    render :scripts
+  end
+
   private
 
   def set_script
