@@ -9,21 +9,23 @@ class Script
     end.flatten
   end
 
-  def find_by(field, value)
-    KINDS.each_with_object([]) do |kind, result|
-      result << kind.classify.constantize.where("#{field}": value)
-    end.flatten
-  end
-
   def by_isbn(isbn)
-    (Book.where(isbn: isbn) + Magazine.where(isbn: isbn)).last
+    find_by("isbn", isbn).last
   end
 
   def by_authors_email(email)
-    Book.where(authors_emails: email) + Magazine.where(authors_emails: email)
+    find_by("authors_emails", email)
   end
 
   def all_sorted_by_title
     (Book.all).merge(Magazine.all).order(:title)
+  end
+
+  private
+
+  def find_by(field, value)
+    KINDS.each_with_object([]) do |kind, result|
+      result << kind.classify.constantize.where("#{field}": value)
+    end.flatten
   end
 end
