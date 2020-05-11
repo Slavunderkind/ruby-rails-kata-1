@@ -14,6 +14,16 @@ RSpec.describe Script, type: :model do
         expect(subject).to eq([book])
       end
     end
+
+    context 'when only magazine exists' do
+      let(:magazine) { create(:magazine) }
+
+      before { magazine }
+
+      it 'returns all records of magazines' do
+        expect(subject).to eq([magazine])
+      end
+    end
   end
 
   describe '#by_isbn' do
