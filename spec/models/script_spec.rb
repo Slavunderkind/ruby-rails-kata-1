@@ -8,6 +8,8 @@ RSpec.describe Script, type: :model do
     context 'when only books exists' do
       let(:book) { create(:book) }
 
+      before { book }
+
       it 'returns all records of books' do
         expect(subject).to eq([book])
       end
