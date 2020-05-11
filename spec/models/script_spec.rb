@@ -34,6 +34,12 @@ RSpec.describe Script, type: :model do
         expect(subject).to eq([book, magazine])
       end
     end
+
+    context 'when no data exists' do
+      it 'returns an empty array' do
+        expect(subject).to eq([])
+      end
+    end
   end
 
   describe '#by_isbn' do
