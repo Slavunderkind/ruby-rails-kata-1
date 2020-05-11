@@ -5,9 +5,10 @@ RSpec.describe Script, type: :model do
   describe '#all' do
     subject { Script.new.all }
 
-    context 'when only books exists' do
-      let(:book) { create(:book) }
+    let(:book) { create(:book) }
+    let(:magazine) { create(:magazine) }
 
+    context 'when only books exists' do
       before { book }
 
       it 'returns all records of books' do
@@ -16,12 +17,21 @@ RSpec.describe Script, type: :model do
     end
 
     context 'when only magazine exists' do
-      let(:magazine) { create(:magazine) }
-
       before { magazine }
 
       it 'returns all records of magazines' do
         expect(subject).to eq([magazine])
+      end
+    end
+
+    context 'when book and magazine exists' do
+      before do
+        book
+        magazine
+      end
+
+      it 'returns all records of magazines' do
+        expect(subject).to eq([book, magazine])
       end
     end
   end
