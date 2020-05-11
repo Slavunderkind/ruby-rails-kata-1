@@ -9,6 +9,12 @@ class Script
     end.flatten
   end
 
+  def find_by(field, value)
+    KINDS.each_with_object([]) do |kind, result|
+      result << kind.classify.constantize.where("#{field}": value)
+    end.flatten
+  end
+
   def by_isbn(isbn)
     (Book.where(isbn: isbn) + Magazine.where(isbn: isbn)).last
   end
