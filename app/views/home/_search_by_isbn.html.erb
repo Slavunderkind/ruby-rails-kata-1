@@ -3,7 +3,7 @@
   <div class="input-group">
     <%= label :search_by_isbn, 'Search by ISBN' %>
     <br>
-    <%= search_field_tag :search, params[:search], placeholder: "Enter isbn", class: "form-control" %>
+    <%= search_field_tag :isbn, params[:isbn], placeholder: "Enter isbn", class: "form-control" %>
     <br>
     <div class="input-group-btn">
       <%= button_tag "Submit", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
