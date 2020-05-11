@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/search_by_isbn' => 'home#search_by_isbn'
+  get '/search_by_authors_email' => 'home#search_by_authors_email'
 end

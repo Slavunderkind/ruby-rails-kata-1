@@ -1,0 +1,12 @@
+<%= form_tag(search_by_authors_email_path, :method => "get",
+    class: 'navbar-form navbar-left') do %>
+  <div class="input-group">
+    <%= label :search_by_authors_email, 'Search by Author\'s Email' %>
+    <br>
+    <%= search_field_tag :authors_email, params[:authors_email], placeholder: "Enter Author's email", class: "form-control" %>
+    <br>
+    <div class="input-group-btn">
+      <%= button_tag "Submit", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>
+    </div>
+  </div>
+<% end %>
