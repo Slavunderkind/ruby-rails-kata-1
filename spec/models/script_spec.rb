@@ -45,14 +45,22 @@ RSpec.describe Script, type: :model do
   describe '#by_isbn' do
     subject { Script.new.by_isbn(isbn) }
 
-    let(:book) { create(:book, isbn: isbn) }
+    let(:book) { create(:book) }
     before { book }
 
     context 'when a book with given isbn exists' do
-      let(:isbn) { '1111-1111' }
+      let(:isbn) { book.isbn }
 
       it 'returns a book record' do
         expect(subject).to eq(book)
+      end
+    end
+
+    context 'when a script given isbn do not exist' do
+      let(:isbn) { '1111-1111' }
+
+      it 'returns a nil' do
+        expect(subject).to eq(nil)
       end
     end
   end
