@@ -7,7 +7,9 @@ class HomeController < ApplicationController
   end
 
   def search_by_isbn
-     @script.by_isbn(params[:isbn])
+    @record = @script.by_isbn(params[:isbn])
+
+    render :show
   end
 
   private

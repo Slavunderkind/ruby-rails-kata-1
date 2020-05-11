@@ -6,6 +6,6 @@ class Script
   end
 
   def by_isbn(isbn)
-    Book.where(isbn: isbn) + Magazine.where(isbn: isbn)
+    (Book.where(isbn: isbn) + Magazine.where(isbn: isbn)).last
   end
 end
