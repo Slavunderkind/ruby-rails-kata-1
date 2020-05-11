@@ -4,7 +4,7 @@ class Script
   KINDS = %w[book magazine].freeze
 
   def all
-    (Book.all).merge(Magazine.all)
+    (Book.all + Magazine.all).flatten
   end
 
   def by_isbn(isbn)
@@ -16,6 +16,6 @@ class Script
   end
 
   def all_sorted_by_title
-    all.order(:title)
+    (Book.all).merge(Magazine.all).order(:title)
   end
 end
