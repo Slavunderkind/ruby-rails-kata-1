@@ -45,7 +45,7 @@ RSpec.describe Script, type: :model do
   describe '#by_isbn' do
     subject { Script.new.by_isbn(isbn) }
 
-    let(:book) { create(:book) }
+    let!(:book) { create(:book) }
     before { book }
 
     context 'when a book with given isbn exists' do

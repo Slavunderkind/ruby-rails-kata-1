@@ -14,7 +14,7 @@ class Script
   end
 
   def by_authors_email(email)
-    find_by("authors_emails", email)
+    includes_value("authors_emails", email)
   end
 
   def all_sorted_by_title
@@ -26,6 +26,12 @@ class Script
   def find_by(field, value)
     KINDS.each_with_object([]) do |kind, result|
       result << kind.classify.constantize.where("#{field}": value)
+    end.flatten
+  end
+
+  def includes_value(field, value)
+    KINDS.each_with_object([]) do |kind, result|
+      result << kind.classify.constantize.where("#{field} like ?", "%#{value}%")
     end.flatten
   end
 end
