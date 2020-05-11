@@ -28,5 +28,11 @@ class CsvReader
   end
 
   def books(row)
+    Book.create!(
+      title: row[0],
+      isbn: row[1],
+      authors_emails: row[2],
+      description: row[3]
+    )
   end
 end
